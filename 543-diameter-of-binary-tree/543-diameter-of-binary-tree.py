@@ -17,11 +17,10 @@ class Solution:
             nonlocal maxDiameter
             if not node:
                 return 0
-            maxLeft = maxDepth(node.left)
-            maxRight = maxDepth(node.right)
+            maxLeft = diameter(node.left)
+            maxRight = diameter(node.right)
             maxDiameter = max(maxDiameter, maxLeft + maxRight)
-            diameter(node.left)
-            diameter(node.right)
+            return max(maxLeft, maxRight) + 1
         diameter(root)
         return maxDiameter
         
