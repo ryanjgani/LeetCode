@@ -7,12 +7,6 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         
-        def maxDepth(node):
-            if not node:
-                return 0
-            return 1 + max(maxDepth(node.left), maxDepth(node.right))
-        
-        maxDiameter = 0
         def diameter(node):
             nonlocal maxDiameter
             if not node:
@@ -21,6 +15,8 @@ class Solution:
             maxRight = diameter(node.right)
             maxDiameter = max(maxDiameter, maxLeft + maxRight)
             return max(maxLeft, maxRight) + 1
+
+        maxDiameter = 0
         diameter(root)
         return maxDiameter
         
