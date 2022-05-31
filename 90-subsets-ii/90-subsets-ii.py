@@ -4,6 +4,7 @@ class Solution:
         subset = []
         
         nums.sort()
+        
         def dfs(i):
             if i == len(nums):
                 res.append(subset[:])
@@ -11,9 +12,10 @@ class Solution:
             subset.append(nums[i])
             dfs(i + 1)
             subset.pop()
-            
+            # check if the next number is a duplicate
             while i + 1 < len(nums) and nums[i] == nums[i + 1]:
                 i += 1
+                
             dfs(i + 1)
         dfs(0)
         return res
