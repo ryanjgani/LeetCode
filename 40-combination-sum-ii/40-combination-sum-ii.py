@@ -12,10 +12,11 @@ class Solution:
                 return
             skipvalue = 0
             for j in range(i, len(candidates) - skipvalue):
-                if j + skipvalue == len(candidates):
+                idx = j + skipvalue
+                if idx == len(candidates):
                     break
-                comb.append(candidates[j + skipvalue])
-                dfs(j + skipvalue + 1)
+                comb.append(candidates[idx])
+                dfs(idx + 1)
                 comb.pop()
                 while j + skipvalue + 1 < len(candidates) and candidates[j + skipvalue] == candidates[j + skipvalue + 1]:
                     skipvalue += 1
