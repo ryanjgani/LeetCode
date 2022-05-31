@@ -18,8 +18,7 @@ class Solution:
                 comb.append(candidates[idx])
                 dfs(idx + 1)
                 comb.pop()
-                while idx + 1 < len(candidates) and candidates[idx] == candidates[idx + 1]:
+                while j + skipvalue + 1 < len(candidates) and candidates[j + skipvalue] == candidates[j + skipvalue + 1]:
                     skipvalue += 1
-                    idx += 1
         dfs(0)
         return res
