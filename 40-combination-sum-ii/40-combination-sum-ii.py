@@ -4,7 +4,6 @@ class Solution:
         comb = []
         
         candidates.sort()
-        print("**")
         
         # Time: O(n * 2^n)
         def dfs(idx, target, nums):
@@ -15,17 +14,18 @@ class Solution:
             if target < 0:
                 return # backtrack
             
-            print(comb)
-            prev = -1
             for i in range(idx, len(nums)):
-                # if i > idx and nums[i] == nums[i - 1]:
-                if nums[i] == prev:
+                # we always want 
+                # to count the first element in this recursive step even if it is the same 
+                # as one before. To avoid overcounting, we just ignore the duplicates
+                # after the first element.
+                
+                if i > idx and nums[i] == nums[i - 1]:
                     continue
                 
                 comb.append(nums[i])
                 dfs(i + 1, target - nums[i], nums)
                 comb.pop()
-                prev = nums[i]
         
         dfs(0, target, candidates)
         return res
