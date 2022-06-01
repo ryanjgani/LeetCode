@@ -4,26 +4,36 @@ class Solution:
         comb = []
         
         candidates.sort()
+        print("**")
+        
+        def dfs(idx, target, nums):
+            print("target", target)
+            if target == 0:
+                print('here')
+                res.append(comb[:])
+                return
+            
+            if target < 0:
+                return # backtrack
+            
+            print(comb)
+            for i in range(idx, len(nums)):
+                if i > idx and nums[i] == nums[i - 1]:
+                    continue
+                
+                comb.append(nums[i])
+                dfs(i + 1, target - nums[i], nums)
+                comb.pop()
+        
+        dfs(0, target, candidates)
+        return res
+    
+    
+    
 
         # Time: O(n*n^n)
         # Space: O(k) where k = target
-        # def dfs(i):
-        #     if sum(comb) >= target or i >= len(candidates):
-        #         if sum(comb) == target:
-        #             res.append(comb[:])
-        #         return
-        #     skipvalue = 0
-        #     for j in range(i, len(candidates) - skipvalue):
-        #         idx = j + skipvalue
-        #         if idx == len(candidates):
-        #             break
-        #         comb.append(candidates[idx])
-        #         dfs(idx + 1)
-        #         comb.pop()
-        #         while j + skipvalue + 1 < len(candidates) and candidates[j + skipvalue] == candidates[j + skipvalue + 1]:
-        #             skipvalue += 1
-        
-        def dfs(i):
+        def dfs_long(i):
             if sum(comb) >= target or i >= len(candidates):
                 if sum(comb) == target:
                     res.append(comb[:])
@@ -36,5 +46,3 @@ class Solution:
                 comb.pop()
         
         
-        dfs(0)
-        return res
