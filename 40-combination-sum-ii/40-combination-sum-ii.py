@@ -6,10 +6,9 @@ class Solution:
         candidates.sort()
         print("**")
         
+        # Time: O(n * 2^n)
         def dfs(idx, target, nums):
-            print("target", target)
             if target == 0:
-                print('here')
                 res.append(comb[:])
                 return
             
@@ -17,13 +16,16 @@ class Solution:
                 return # backtrack
             
             print(comb)
+            prev = -1
             for i in range(idx, len(nums)):
-                if i > idx and nums[i] == nums[i - 1]:
+                # if i > idx and nums[i] == nums[i - 1]:
+                if nums[i] == prev:
                     continue
                 
                 comb.append(nums[i])
                 dfs(i + 1, target - nums[i], nums)
                 comb.pop()
+                prev = nums[i]
         
         dfs(0, target, candidates)
         return res
