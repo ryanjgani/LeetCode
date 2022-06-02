@@ -4,14 +4,26 @@ class Solution:
         comb = []
         candidates.sort()
         
+        # def dfs(i, remaining):
+        #     if remaining == 0:
+        #         res.append(comb[:])
+        #         return
+        #     if remaining < 0:
+        #         return # backtrack
+            
+    
+        # Time: O(n^k) where k = target
+        # Space: O(k) -> max space of comb, not counting the output array res
         def dfs(idx):
             if sum(comb) == target:
                 res.append(comb[:])
                 return
             if sum(comb) > target:
                 return # backtrack
-            
+
             for i in range(idx, len(candidates)):
+                if sum(comb) + candidates[i] > target:
+                    break
                 comb.append(candidates[i])
                 dfs(i)
                 comb.pop()
