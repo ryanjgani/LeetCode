@@ -13,7 +13,7 @@ class Solution:
 #             dp[n] = minNum
 #         return -1 if dp[amount] == 99999 else dp[amount]
 
-        # top down approach
+        # top down memoization approach
         dp = {}
         
         def dfs(rem):
