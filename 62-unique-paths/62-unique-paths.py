@@ -12,8 +12,7 @@ class Solution:
                 return cache[(i, j)]
             
             # go right and go down
-            temp = dfs(i, j + 1) + dfs(i + 1, j)
-            cache[(i, j)] = temp
+            cache[(i, j)] = dfs(i, j + 1) + dfs(i + 1, j)
             return cache[(i, j)]
         
         
