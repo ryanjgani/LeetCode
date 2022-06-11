@@ -1,6 +1,6 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        
+#         Top down
         memo = {}
         def dfs(i, j):
             if i == len(text1) or j == len(text2):
@@ -19,7 +19,7 @@ class Solution:
         
         
         
-        # brute force
+        # brute force O(2^n)
 #         def dfs(i, j):
 #             if i == len(text1) or j == len(text2):
 #                 return 0
