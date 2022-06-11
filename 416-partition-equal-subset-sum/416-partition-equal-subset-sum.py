@@ -1,16 +1,22 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        cache = {}
-        def helper(start, target):         # Here path is not needed
-            if (start, target) in cache:
-                return cache[(start, target)]
-            if target < 0:
-                return
-            elif target == 0:
-                return True
-            for i in range(start, len(nums)):
-                if helper(i+1, target-nums[i]):
-                    return True
-            cache[(start, target)] = False
+        if not nums:
+            return True
+        n = len(nums)
+        if sum(nums) % 2 != 0:
             return False
-        return False if sum(nums)%2 else helper(0, sum(nums)/2)
+        target = sum(nums)//2
+        memo = {}
+        
+        def helper(total, i):
+            nonlocal nums, memo
+            if (total, i) in memo:
+                return memo[(total, i)]
+            if i == len(nums):
+                return False
+            if total == 0:
+                return True
+            memo[(total, i)] = helper(total-nums[i], i+1) or helper(total, i+1)
+            return memo[(total, i)]
+        
+        return helper(target, 0) 
