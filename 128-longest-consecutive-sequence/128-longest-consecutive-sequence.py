@@ -5,10 +5,8 @@ class Solution:
         for n in nums:
             # if start
             if n - 1 not in numbers:
-                temp = 1
-                for i in range(1, len(nums)):
-                    if n + i not in numbers:
-                        break
-                    temp += 1
-                res = max(res, temp)
+                length = 0
+                while n + length in numbers:
+                    length += 1
+                res = max(res, length)
         return res
