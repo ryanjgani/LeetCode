@@ -8,7 +8,4 @@ class Solution:
                 hmap[str(temp)].append(word)
             else:
                 hmap[str(temp)] = [word]
-        res = []
-        for words in hmap:
-            res.append(hmap[words])
-        return res
+        return hmap.values()
