@@ -1,20 +1,25 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        intervals.append(newInterval)
-        intervals.sort(key = lambda i: i[0])
-        res = [intervals[0]]
+        newStart, newEnd = newInterval
         
-        for start, end in intervals[1:]:
-            prev_end = res[-1][1]
-            if start <= prev_end:
-                res[-1][1] = max(prev_end, end)
-            else:
-                res.append([start, end])
-        return res   
+        # if not intervals: return [newInterval]
+        # if newEnd < intervals[0][0]:
+        #     return newInterval + intervals
+        # if newStart > intervals[-1][1]:
+        #     return intervals + newInterval
+        
+        res = []
     
-        # res = [intervals[0]]
-        # for start, end in intervals[1:]:
-        #     prev_end = res[-1][1]
-        #     if newInterval[0] <= end:
-        #         if newInterval[1] > interval[1]:
-        #             res.append([])
+               
+        for start, end in intervals:
+            if newInterval and newEnd >= start and newStart <= end:
+                newInterval = [min(start, newStart), max(end, newEnd)]
+                newStart, newEnd = newInterval
+                continue
+            if newInterval and newEnd < start: 
+                res.append(newInterval)
+                newInterval = None
+            res.append([start, end])
+        if newInterval:
+            res.append(newInterval)
+        return res
