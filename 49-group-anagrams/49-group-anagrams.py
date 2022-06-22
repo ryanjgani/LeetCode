@@ -1,11 +1,14 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        
         hmap = {}
+        res = []
+        
         for word in strs:
-            temp = sorted(word)
-            if str(temp) in hmap:
-                hmap[str(temp)].append(word)
+            temp = str(sorted(word))
+            if temp in hmap:
+                hmap[temp].append(word)
             else:
-                hmap[str(temp)] = [word]
-        return list(hmap.values())
+                hmap[temp] = [word]
+        for h in hmap:
+            res.append(hmap[h])
+        return res
