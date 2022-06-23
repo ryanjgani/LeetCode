@@ -23,14 +23,9 @@ class Solution:
             prev = cur
             cur = _next
         left, right = head, prev
-        dummy = ListNode()
-        p = dummy
         while left and right:
-            p.next = left
-            left = left.next
-            p = p.next
-            p.next = right
-            right = right.next
-            p = p.next
-        p.next = left or None
-        return dummy.next
+            tmp1, tmp2 = left.next, right.next
+            left.next = right
+            right.next = tmp1
+            left, right = tmp1, tmp2
+        
