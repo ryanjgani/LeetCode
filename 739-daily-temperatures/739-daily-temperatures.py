@@ -11,4 +11,5 @@ class Solution:
                 res[top[1]] = difference
             stack.append([temp, i])
         
+        
         return res
