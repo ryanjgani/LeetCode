@@ -5,7 +5,7 @@ class Solution:
         def helper(speed):
             count = 0
             for p in piles:
-                count += -1 * (-p // speed)
+                count += math.ceil(p / speed)
             return count <= h
         
         l, r = 1, max(piles) + 1
