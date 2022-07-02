@@ -1,13 +1,17 @@
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
-        S, T = [], []
-        for i, c in enumerate(s):
-            if c == "#":
-                S = S[:-1]
-            else: S.append(c)
-        for i, c in enumerate(t):
-            if c == "#":
-                T = T[:-1]
-            else: T.append(c)
-     
-        return T == S
+        
+        i, j = len(s) - 1, len(t) - 1
+        backS, backT = 0, 0
+        
+        while True:
+            while i >= 0 and (backS or s[i] == "#"):
+                backS += 1 if s[i] == '#' else -1
+                i -= 1
+            while j >= 0 and (backT or t[j] == "#"):
+                backT += 1 if t[j] == '#' else -1
+                j -= 1
+            if not (i >= 0 and j >= 0 and s[i] == t[j]):
+                return i == j == -1
+            i -= 1
+            j -= 1
