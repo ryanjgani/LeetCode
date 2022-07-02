@@ -14,21 +14,3 @@ class Solution:
                 r -= 1
                 i -= 1
             i += 1
-            
-                
-        
-        # Bucket Sort
-        # bucket = [0] * 3
-        # for n in nums:
-        #     bucket[n] += 1
-        # idx = 0
-        # for i in range(len(nums)):
-        #     while bucket[idx] == 0:
-        #         idx += 1
-        #     nums[i] = idx
-        #     bucket[idx] -= 1
-            
-        
-        
-        
-                
