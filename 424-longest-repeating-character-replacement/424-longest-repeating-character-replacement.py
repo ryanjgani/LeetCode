@@ -1,20 +1,23 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        r = 0
-        hmap = {}
-        hmap[s[0]] = 1
         res = 0
-        for l in range(1, len(s)):
-            if s[l] in hmap: hmap[s[l]] += 1
-            else: hmap[s[l]] = 1
-            wlen = l - r + 1
-            maxCount = 0
-            for c in hmap: 
-                maxCount = max(maxCount, hmap[c])
-            if wlen - maxCount <= k:
-                res = max(res, wlen)
-            else:
-                hmap[s[r]] -= 1
-                r += 1
-        return res
+        l = 0
+        hmap = {}
+        
+        for r, letter in enumerate(s):
+            hmap[letter] = hmap.get(letter, 0) + 1
             
+            _max = 0
+            for h in hmap:
+                _max = max(_max, hmap[h])
+            
+            wlen = r - l + 1
+            while wlen - _max > k:
+                hmap[s[l]] -= 1
+                l += 1
+                wlen = r - l + 1
+                for h in hmap:
+                    _max = max(_max, hmap[h])
+                
+            res = max(res, wlen)
+        return res
