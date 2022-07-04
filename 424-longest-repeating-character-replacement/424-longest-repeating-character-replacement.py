@@ -7,17 +7,9 @@ class Solution:
         for r, letter in enumerate(s):
             hmap[letter] = hmap.get(letter, 0) + 1
             
-            _max = 0
-            for h in hmap:
-                _max = max(_max, hmap[h])
-            
-            wlen = r - l + 1
-            while wlen - _max > k:
+            while (r - l + 1) - max(hmap.values()) > k:
                 hmap[s[l]] -= 1
                 l += 1
-                wlen = r - l + 1
-                for h in hmap:
-                    _max = max(_max, hmap[h])
                 
-            res = max(res, wlen)
+            res = max(res, r - l + 1)
         return res
