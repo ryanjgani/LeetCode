@@ -4,7 +4,6 @@ class Solution:
         l = 0
         deque = []
         for r in range(len(nums)):
-
             while deque and deque[-1] < nums[r]:
                 deque.pop()
             deque.append(nums[r])
