@@ -13,7 +13,6 @@ class Solution:
         
         res = []
         def dfs(idx, comb, total):
-            if total > target: return
             if total == target:
                 res.append(comb[:])
                 return
