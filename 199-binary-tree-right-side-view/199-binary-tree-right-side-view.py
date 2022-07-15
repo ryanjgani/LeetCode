@@ -6,9 +6,9 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root: return []
         res = []
         queue = [root]
-        if not root: return []
         while queue:
             length = len(queue)
             for i in range(length):
