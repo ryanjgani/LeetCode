@@ -12,7 +12,6 @@ class Solution:
         
         
         res = []
-        candidates.sort()
         def dfs(idx, comb, total):
             if total > target: return
             if total == target:
