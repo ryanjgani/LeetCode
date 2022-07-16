@@ -5,14 +5,10 @@ class Solution:
         
         def dfs(rem):
             if rem in dp: return dp[rem]
-            if rem == 0:
-                return 0
-            if rem < 0:
-                return float('inf')
-            tmp = float('inf')
-            for c in coins:
-                tmp = min(tmp, 1 + dfs(rem - c))
-            dp[rem] = tmp
+            if rem == 0: return 0
+            if rem < 0: return float('inf')
+            
+            dp[rem] = min([1 + dfs(rem - c) for c in coins])
             return dp[rem]
             
         res = dfs(amount)
