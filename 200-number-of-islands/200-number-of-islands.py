@@ -1,37 +1,22 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        rows, cols = len(grid), len(grid[0])
+        ROWS = len(grid)
+        COLS = len(grid[0])
         res = 0
+        visited = [([False] * COLS) for _ in range(ROWS)]
         
         def dfs(r, c):
-            if r not in range(rows) or c not in range(cols) or grid[r][c] != '1':
+            if r >= ROWS or c >= COLS or c < 0 or r < 0 or visited[r][c] or grid[r][c] == '0':
                 return
-            grid[r][c] = '#'
-            dfs(r + 1, c)
-            dfs(r - 1, c)
+            visited[r][c] = True
             dfs(r, c + 1)
+            dfs(r + 1, c)
             dfs(r, c - 1)
+            dfs(r - 1, c)
         
-        
-#         def bfs(r, c):
-#             q = []
-#             q.append((r, c))
-#             grid[r][c] = '#'
-#             while q:
-#                 row, col = q.pop(0)
-#                 directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-                
-#                 for dr, dc in directions:
-#                     r = dr + row
-#                     c = dc + col
-#                     if r in range(rows) and c in range(cols) and grid[r][c] == '1':
-#                         grid[r][c] = '#'
-#                         q.append((r, c))
-        
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == '1':
-                    dfs(r, c)
+        for i in range(ROWS):
+            for j in range(COLS):
+                if not visited[i][j] and grid[i][j] == '1':
+                    dfs(i, j)
                     res += 1
-                
         return res
