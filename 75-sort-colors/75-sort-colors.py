@@ -7,10 +7,11 @@ class Solution:
         i = 0
         while i <= r:
             if nums[i] == 0:
-                nums[i], nums[l] = nums[l], nums[i]
+                nums[l], nums[i] = nums[i], nums[l]
                 l += 1
             elif nums[i] == 2:
-                nums[i], nums[r] = nums[r], nums[i]
+                nums[r], nums[i] = nums[i], nums[r]
                 r -= 1
                 i -= 1
             i += 1
+                
