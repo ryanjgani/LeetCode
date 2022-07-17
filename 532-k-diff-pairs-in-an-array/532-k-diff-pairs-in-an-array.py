@@ -6,6 +6,6 @@ class Solution:
             for c in hmap:
                 res += 1 if hmap[c] > 1 else 0
         else:
-            for key, val in hmap.items():
+            for key in hmap:
                 res += 1 if key + k in hmap else 0
         return res
