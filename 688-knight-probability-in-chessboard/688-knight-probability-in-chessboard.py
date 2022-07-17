@@ -44,7 +44,7 @@ class Solution:
                             mem[(nextR, nextC, step + 1)] = dfs(nextR, nextC, prob / 8, step + 1)
                         p += mem[(nextR, nextC, step + 1)] 
                 else:
-                    p = prob
+                    p = prob # step == k (base case)
             return p
         return dfs(row, column, 1, 0)    
     
