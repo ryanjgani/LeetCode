@@ -5,7 +5,7 @@ class Solution:
             mid = l + (r - l) // 2
             if nums[mid] == target: return mid
             
-            if nums[mid] >= nums[l]:
+            if nums[mid] > nums[r]:
                 if target > nums[mid]: l = mid + 1
                 else:
                     if target < nums[l]: l = mid + 1
