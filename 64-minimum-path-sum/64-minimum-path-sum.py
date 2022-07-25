@@ -8,15 +8,9 @@ class Solution:
             for c in range(COLS - 1, -1, -1):
                 dp[r][c] = min(dp[r][c + 1], dp[r + 1][c]) + grid[r][c]
         return dp[0][0]
-        
-        
-        
-        
-        
-        
-        
+    
+#           top down memoization
 #         memo = {}
-        
 #         def dfs(i, j):
 #             if (i, j) in memo: 
 #                 return memo[(i, j)]
@@ -28,6 +22,5 @@ class Solution:
 #             down = dfs(i, j + 1) + grid[i][j]
 #             memo[(i, j)] = min(left, down)
 #             return memo[(i, j)]
-        
 #         res = dfs(0, 0)
 #         return res
