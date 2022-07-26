@@ -1,5 +1,6 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        # Bottom Up O(n*m) Time and Space
         ROWS, COLS = len(obstacleGrid), len(obstacleGrid[0])
         temp = [[0] * (COLS + 1) for _ in range(ROWS + 1)]
         temp[ROWS][COLS - 1] = 1
@@ -10,7 +11,7 @@ class Solution:
                     temp[r][c] = temp[r + 1][c] + temp[r][c + 1]
         return temp[0][0]
         
-        
+        # Top Down Memo O(n*m) Time and Space
         # memo = {}
         # memo[(ROWS - 1, COLS - 1)] = 1
         # def dfs(i, j):
