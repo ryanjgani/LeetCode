@@ -1,7 +1,6 @@
 class Solution:
     def diffWaysToCompute(self, expression: str) -> List[int]:
-        res = []
-        
+        # O(2^n) backtracking - brute force
         def dfs(start, end):
             res = []
             for i in range(start, end):
