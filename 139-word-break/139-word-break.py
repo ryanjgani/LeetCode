@@ -8,9 +8,8 @@ class Solution:
             temp = False
             for word in wordDict:
                 n = len(word)
-                if i + n <= len(s) and word == s[i:i+n]:
-                    if dfs(i + n):
-                        temp = True
+                if i + n <= len(s) and word == s[i:i+n] and dfs(i + n):
+                    temp = True
             memo[i] = temp
             return temp
         return dfs(0)
