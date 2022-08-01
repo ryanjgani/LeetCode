@@ -3,14 +3,14 @@ class Solution:
         # Bottom Up
         dp = {}
         dp[len(s)] = True
-        last = len(s)
         for i in range(len(s) - 1, -1, -1):
             dp[i] = False
             for word in wordDict:
                 n = len(word)
                 if i + n <= len(s) and word == s[i:i+n]:
-                    dp[i] = dp[i] or dp[i + n]
-                    
+                    dp[i] = dp[i + n]
+                if dp[i]:
+                    break
         
         
         
