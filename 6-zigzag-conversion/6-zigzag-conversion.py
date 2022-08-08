@@ -20,7 +20,6 @@ class Solution:
         for r in range(1, numRows - 1):
             c = startC
             temp = i
-            print(i, r, c)
             while i < len(s):
                 arr[r][c] = s[i]
                 i += jump
