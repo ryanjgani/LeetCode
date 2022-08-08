@@ -1,34 +1,12 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        distance = numRows - 2
-        jump = (numRows - 1) * 2
-        arr = [[""] * len(s) for _ in range(len(s))]
-        i = 0
-        startR = numRows - 2
-        startC = distance
-        startI = jump - 1
         if numRows == 1: return s
-        for r in range(numRows):
-            c = 0
-            temp = i
-            while i < len(s):
-                arr[r][c] = s[i]
-                i += jump
-                c += distance + 1
-            i = temp + 1
-        i = startI
-        for r in range(1, numRows - 1):
-            c = startC
-            temp = i
-            while i < len(s):
-                arr[r][c] = s[i]
-                i += jump
-                c += distance + 1
-            startC -= 1
-            i = temp - 1
         res = ""
-        for r in range(len(s)):
-            for c in range(len(s)):
-                res += arr[r][c]
+        for r in range(numRows):
+            jump = 2 * (numRows - 1)
+            for i in range(r, len(s), jump):
+                res += s[i]
+                if 0 < r < numRows - 1 and i + jump - 2 * r < len(s):
+                    res += s[i + jump - 2 * r]
         return res
         
