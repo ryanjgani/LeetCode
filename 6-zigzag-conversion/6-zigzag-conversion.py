@@ -1,5 +1,6 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
+        # O(n) TC
         if numRows == 1: return s
         res = ""
         for r in range(numRows):
