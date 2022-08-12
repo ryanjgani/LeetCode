@@ -1,6 +1,5 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        if sum(nums) % 2: return False
         target = sum(nums) / 2
         dp = set()
         dp.add(0)
@@ -11,10 +10,6 @@ class Solution:
                 temp.add(n + d)
             dp = temp
         return target in dp
-        
-        
-        
-        
         
         # def dfs(i, comb):
         #     if i in dp:
