@@ -11,7 +11,7 @@ class Solution:
             while stack and n > stack[-1]:
                 res[hmap[stack.pop()]] = n
                 
-            if (not stack or stack[-1] > n) and n in hmap:
+            if n in hmap:
                 stack.append(n)
         return res
         
