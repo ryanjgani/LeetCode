@@ -3,21 +3,21 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        strict = -1
-        decrease = True
-        for i in range(len(nums) - 1, -1, -1):
-            if i < len(nums) - 1 and nums[i] < nums[i + 1]:
-                decrease = False
+        prev = 0
+        for i in range(len(nums) - 1, -2, -1):
+            if i == -1: break
+            if i < len(nums) - 1 and nums[i] < prev:
                 break
-        if not decrease:
+            prev = nums[i]
+        if i >= 0:
             for j in range(len(nums) - 1, -1, -1):
                 if nums[j] > nums[i]:
                     break
             nums[i], nums[j] = nums[j], nums[i]
         
         l, r = i + 1, len(nums) - 1
-        if decrease: l = 0
         while l < r:
             nums[l], nums[r] = nums[r], nums[l]
             l += 1
             r -= 1
+        
