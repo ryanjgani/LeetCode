@@ -1,39 +1,21 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        ROWS = len(grid)
-        COLS = len(grid[0])
         res = 0
-        visited = [([False] * COLS) for _ in range(ROWS)]
+        d = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+        rows, cols = len(grid), len(grid[0])
         
-        stack = []
-        for i in range(ROWS):
-            for j in range(COLS):
-                if not visited[i][j] and grid[i][j] == '1':
-                    queue = [[i, j]]
-                    while queue:
-                        r, c = queue.pop(0)
-                        if r >= ROWS or c >= COLS or c < 0 or r < 0 or visited[r][c] or grid[r][c] == '0': continue
-                        visited[r][c] = True
-                        queue.append([r, c + 1])
-                        queue.append([r + 1, c])
-                        queue.append([r, c - 1])
-                        queue.append([r - 1, c])
+        def dfs(i, j):
+            if grid[i][j] in ("0", "-1"):
+                return
+            grid[i][j] = '-1'
+            for r, c in d:
+                if 0 <= i + r < rows and 0 <= j + c < cols:
+                    dfs(i + r, j + c)
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == '1':
+                    dfs(r, c)
                     res += 1
         return res
+            
         
-        
-#         def dfs(r, c):
-#             if r >= ROWS or c >= COLS or c < 0 or r < 0 or visited[r][c] or grid[r][c] == '0':
-#                 return
-#             visited[r][c] = True
-#             dfs(r, c + 1)
-#             dfs(r + 1, c)
-#             dfs(r, c - 1)
-#             dfs(r - 1, c)
-        
-#         for i in range(ROWS):
-#             for j in range(COLS):
-#                 if not visited[i][j] and grid[i][j] == '1':
-#                     dfs(i, j)
-#                     res += 1
-#         return res
