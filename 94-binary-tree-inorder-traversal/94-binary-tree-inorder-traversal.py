@@ -9,7 +9,6 @@ class Solution:
         # Iterative Approach
         res = []
         stack = []
-        
         while root or stack:
             while root:
                 stack.append(root)
