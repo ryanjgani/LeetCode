@@ -8,13 +8,25 @@ class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
         self.inorder = []
+        stack = []
         
-        def dfs(root):
-            if not root: return
-            if root.left: dfs(root.left)
+        # Iterative
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
             self.inorder.append(root.val)
-            if root.right: dfs(root.right)
-        dfs(root)   
+            root = root.right
+        
+        
+        # Recursive
+        # def dfs(root):
+        #     if not root: return
+        #     if root.left: dfs(root.left)
+        #     self.inorder.append(root.val)
+        #     if root.right: dfs(root.right)
+        # dfs(root)   
         
 
     def next(self) -> int:
