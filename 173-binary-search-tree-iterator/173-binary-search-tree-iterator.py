@@ -7,7 +7,6 @@
 class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
-        self.stack = []
         self.inorder = []
         
         def dfs(root):
