@@ -13,17 +13,13 @@ class Solution:
                 return True
             if n in visit:
                 return False
-            if premap[n] == []:
-                res.append(n)
-                crossed.add(n)
-                return True
+            
             visit.add(n)
             for prereq in premap[n]:
                 if not dfs(prereq): return False
             visit.remove(n)
             crossed.add(n)
             res.append(n)
-            premap[n] = []
             return True
         
         for i in range(numCourses):
