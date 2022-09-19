@@ -20,7 +20,7 @@ class Solution:
             hmap[n] = []
             return True
         for n in range(numCourses):
-            if not dfs(n):
+            if len(hmap) and not dfs(n):
                 return False
         return True
         
