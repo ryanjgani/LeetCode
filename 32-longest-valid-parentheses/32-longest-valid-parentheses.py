@@ -6,8 +6,8 @@ class Solution:
             if s[i] == '(':
                 stack.append(i)
             else:
-                if stack and stack[-1] >= 0 and s[stack[-1]] == '(':
-                    stack.pop()
+                stack.pop()
+                if stack:
                     res = max(res, i - stack[-1])
                 else:
                     stack.append(i)
