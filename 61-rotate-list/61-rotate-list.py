@@ -10,9 +10,8 @@ class Solution:
         while p:
             count += 1
             p = p.next
-        if k == 0 or count in (0, 1): return head
+        if k == 0 or count in (0, 1) or k % count == 0: return head
         k = k % count
-        if k == 0 or count in (0, 1): return head
 
         p = q = head
         for i in range(k):
