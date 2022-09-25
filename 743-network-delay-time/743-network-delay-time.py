@@ -1,9 +1,9 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        # BFS + minHeap, O(E * logV) Time Complexity
         graph = {}
         for src, target, time in times:
             graph[src] = graph.get(src, []) + [(target, time)]
-            
         heap = [(0, k)]
         heapify(heap)
         visit = set()
@@ -16,6 +16,5 @@ class Solution:
                 for target, time in graph[node]:
                     if target not in visit:
                         heappush(heap, (path + time, target))
-
         return res if len(visit) == n else -1
             
