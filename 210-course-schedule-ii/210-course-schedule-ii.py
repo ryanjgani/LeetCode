@@ -1,31 +1,22 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        premap = {i: [] for i in range(numCourses)}
         res = []
-        visit = set()
-        crossed = set()
-        
+        graph = {i: [] for i in range(numCourses)}
         for a, b in prerequisites:
-            premap[a].append(b)
+            graph[a].append(b)
+        visit = [0] * numCourses
         
-        def dfs(n):
-            if n in crossed:
-                return True
-            if n in visit:
-                return False
+        def dfs(i):
+            if visit[i] == 1: return True
+            if visit[i] == -1: return False
             
-            visit.add(n)
-            for prereq in premap[n]:
-                if not dfs(prereq): return False
-            visit.remove(n)
-            crossed.add(n)
-            res.append(n)
+            visit[i] = -1
+            for node in graph[i]:
+                if not dfs(node): return False
+            visit[i] = 1
+            res.append(i)
             return True
-        
-        for i in range(numCourses):
-            if not dfs(i):
-                return []
+        for n in range(numCourses):
+            if not dfs(n): return []
         return res
-        
-                
         
