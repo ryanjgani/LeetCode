@@ -5,10 +5,7 @@ class Solution:
         ones = []
         for i, n in enumerate(boxes):
             if n: ones.append(i)
-        
         for i in range(len(boxes)):
-            count = 0
             for j in ones:
-                count += abs(i - j)
-            res[i] = count
+                res[i] += abs(i - j)
         return res
