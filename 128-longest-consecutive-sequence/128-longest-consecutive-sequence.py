@@ -1,12 +1,20 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        numbers = set(nums)
+        allnums = set(nums)
+        hmap = {}
         res = 0
         for n in nums:
-            # if start
-            if n - 1 not in numbers:
-                length = 0
-                while n + length in numbers:
-                    length += 1
-                res = max(res, length)
+            if n - 1 not in allnums:
+                count = 1
+                nextNum = n + 1
+                while nextNum in allnums:
+                    count += 1
+                    nextNum += 1
+                res = max(res, count)
         return res
+        
+        
+        
+                
+        
+        
