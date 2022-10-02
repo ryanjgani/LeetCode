@@ -1,9 +1,6 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        l, r = 0, len(nums) - 1
-        res = [-1, -1]
-        
-        
+        # O(log(m+n)) time
         def helper(pos):
             l, r = 0, len(nums) - 1
             i = -1
@@ -19,9 +16,6 @@ class Solution:
                         l = mid + 1
             return i
         return [helper('start'), helper('end')]
-            
-        
-        
         
         # O(n/2) time
         while l <= r:
