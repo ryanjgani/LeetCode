@@ -1,5 +1,9 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        
+        
+        
+        # O(m + n) time and space
         arr = []
         p = q = 0
         while p < len(nums1) and q < len(nums2):
@@ -11,9 +15,5 @@ class Solution:
                 q += 1
         if p < len(nums1): arr.extend(nums1[p:])
         if q < len(nums2): arr.extend(nums2[q:])
-         
         mid = len(arr) // 2
-        if len(arr) % 2:
-            return arr[mid]
-        else:
-            return (arr[mid] + arr[mid - 1]) / 2
+        return arr[mid] if len(arr) % 2 else (arr[mid] + arr[mid - 1]) / 2
