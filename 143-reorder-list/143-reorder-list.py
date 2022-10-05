@@ -8,6 +8,7 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
+        # split linked list to two
         slow = fast = head
         prev = None
         while fast and fast.next:
@@ -18,6 +19,7 @@ class Solution:
         prev.next = None
         prev, cur, = None, slow
         
+        # reverse second half
         while cur:
             nex = cur.next
             cur.next = prev
@@ -32,8 +34,7 @@ class Solution:
             q.next = nextP
             p = nextP
             q = nextQ
-        if q:
-            p.next = q
+        if q: p.next = q
         return head
         
             
