@@ -8,24 +8,34 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        slow = head
-        fast = head.next
+        slow = fast = head
+        prev = None
         while fast and fast.next:
+            prev = slow
             slow = slow.next
             fast = fast.next.next
-        prev = None
-        cur = slow.next
-        _next = None
-        slow.next = None
+        if not prev: return head
+        prev.next = None
+        prev, cur, = None, slow
+        
         while cur:
-            _next = cur.next
+            nex = cur.next
             cur.next = prev
             prev = cur
-            cur = _next
-        left, right = head, prev
-        while left and right:
-            tmp1, tmp2 = left.next, right.next
-            left.next = right
-            right.next = tmp1
-            left, right = tmp1, tmp2
+            cur = nex
+        p, q = head, prev
+        
+        while p.next and q.next:
+            nextP = p.next
+            nextQ = q.next
+            p.next = q
+            q.next = nextP
+            p = nextP
+            q = nextQ
+        if q:
+            p.next = q
+        return head
+        
+            
+        
         
