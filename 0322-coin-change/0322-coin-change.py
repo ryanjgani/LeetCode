@@ -10,19 +10,17 @@ class Solution:
             dp[a] = temp
         return dp[amount] if dp[amount] < float('inf') else -1
         
-        
+        # top down masih gabisa
         dp = {}
-        dp[amount] = 0
-        def dfs(i, total):
-            if total in dp: return dp[total]
-            if total == amount: return 0
-            if total > amount or i == len(coins):
+        dp[0] = 0
+        def dfs(i, rem):
+            if rem in dp: return dp[rem]
+            if rem < 0 or i == len(coins):
                 return float('inf')
-            withcoin = 1 + dfs(i, total + coins[i])
-            withoutcoin = dfs(i + 1, total)
-            dp[total] = min(withcoin, withoutcoin)
-            return dp[total]
+            withcoin = 1 + dfs(i, rem - coins[i])
+            withoutcoin = dfs(i + 1, rem)
+            dp[rem] = min(withcoin, withoutcoin)
+            return dp[rem]
         
-        res = dfs(0, 0)
-        print(dp[0])
+        res = dfs(0, amount)
         return res if res < float('inf') else -1
